@@ -1,0 +1,115 @@
+model 修改的过程：
+CateModel.class.php:
+
+	 //添加栏目
+	  public function add($data){//对于这个函数 我 后面应该会做调整 因为 可以把 增改放在一个函数里  而且在view页面的隐藏域做了一个mode 可以进行判断
+	     return $this->db->auto_execute_dml($this->table,$data);//因为默认是insert
+	  }
+	  //显示栏目表单
+	  public function select(){
+		    $sql = 'select cate_id,catename,parent_id from '.$this->table;
+			return $this->db->getall($sql);
+	  }
+	   //删除栏目
+	  public function delete($cid){
+	       $sql = 'delete from '.$this->table.' where cate_id ='.$cid;
+		   $this->db->sql_query($sql);
+		   return $this->db->affected_rows();//为啥要返回这个 因为 delete from cate where cate_id = 999 语句能执行成功 可以没有行数受到影响
+	  }
+	     //修改栏目
+	  public function update($data,$id){
+			$this->db->auto_execute_dml($this->table,$data,'update',' where cate_id = '.$id);
+			return $this->db->affected_rows();
+	  }
+	   //找到一个栏目记录
+	  public function findcate($cid){
+				$sql = 'select * from '.$this->table.' where cate_id = '.$cid;
+				return $this->db->getrow($sql);
+
+	 }
+
+
+/*
+	    暂时不要  我自己做了分页操作的
+	   //获取没有放入回收站的商品
+	   public function getgoods(){
+	       $sql = 'select * from'.$this->table.' where is_delete=0';
+		   return $this->db->getall($sql);
+	   }
+	   //获取放入回收站的商品
+	   public function gettrash(){
+	         $sql = 'select * from'.$this->table.' where is_delete=1';
+		     return $this->db->getall($sql);
+	   }*/
+	    //接收表单在post里有的字段
+		  public function auto_get_post($post){
+		      $sql = 'desc '.$this->table;
+			  //return $this->db->getall($sql);
+			  $fields = array();
+			  $desc = $this->db->getall($sql);
+			  foreach($desc as $v){
+			   if(array_key_exists($v['Field'],$post)){
+			      $fields[] = $v['Field'];
+			   }
+			  }
+			  return $fields;
+	
+		  }
+
+自动验证
+$_validate
+array('goods_name','商品名不能为空',''),
+array('goods_sn','商品序列号不能为空',''),
+array('cat_id','商品未分类','0'),
+array('goods_weight','重量不能没有',''),
+array('goods_number','库存量不能为0','0')
+ public function __autocheck($arr=array()){
+			   $error  = array();
+                foreach($this->_validate as $v){
+				      if(array_key_exists($v[0],$arr)  &&  $v[2] == $arr[$v[0]] ){
+					       $error[] =$v[1];
+					  }
+				}
+				return $error;
+		  }
+ /*$error = $goodsmodel->__autocheck($_POST);//自动验证
+ if(!empty($error)){
+   foreach($error as $v){
+     echo '<font color=red>',$v,'</font></br>';
+   }
+    exit;
+ }*/
+
+  //商品图片上传
+	   public function upload_file($FILES,$dir){
+	             if(!is_dir($dir)){
+				     mkdir($dir,'0777',true);//级联创建目录 比如说  我写的 ./upload/date  两个都没有的话就都创建
+				 }
+				  $hz = substr($FILES['name'],strripos($FILES['name'],'.'));
+				  //获得文件的后缀名：$fi = explode('.',$FILES['name']);$hz= end($fi);
+				  //或 pathinfo(extension);
+				  $newpath = $dir.'/'.time().mt_rand(1,1000).$hz;
+				  echo $FILES['type'];
+				  if((($FILES['type'] == 'image/pjpeg')||($FILES['type'] == 'image/gif')||($FILES['type'] == 'image/png')||($FILES['type'] == 'image/jpeg')||($FILES['type'] == 'image/jpg') ||($FILES['type'] == 'image/x-png')) && ($FILES['size'] <( 20*1024*1024))){				
+							  if($FILES['error'] > 0){
+								  // echo $FIES['error'];
+								    return '';
+							  }else{
+							         if(file_exists($newpath)){
+									   // echo '文件存在了';
+										return '';
+									 }else if(is_uploaded_file($FILES['tmp_name'])){
+									 
+									          $upfile = $FILES['tmp_name'];
+											 if( move_uploaded_file($upfile,$newpath)){
+											   // echo '文件上传成功';
+												return $newpath;
+											 }
+									 }
+							  }
+				  }else{
+				       //echo '文件的类型或者大小有问题';
+					   return '';
+				  }
+	   }
+ $goods_img = $goodsmodel->upload_file($_FILES['goods_img'],ROOT.'/admin/upload/'.date("Y-m-d"));

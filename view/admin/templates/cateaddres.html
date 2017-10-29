@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+	<title>栏目添加结果</title>
+	<script type="text/javascript">
+	   function my_location(){
+	       clearInterval(mytimer);//在跳转页面前停止定时 释放资源
+	       window.location.href = "<?php echo $_SERVER['HTTP_REFERER']?>";
+	   }
+	   setTimeout('my_location',5000); //设置定时器 五秒后跳转
+	   function clock(){//计时器
+	       num.innerText -= 1;
+	   }
+	   var mytimer = setInterval('clock()',1000);//倒计时
+	</script>
+  </head>
+ <body>
+
+     <?php
+		 if($res){
+	 ?>
+      <h2 align='center'>彻底删除商品成功，<span id='num'>5</span>秒后返回</h2>
+      <?php
+	     }else{
+	 ?>
+		<h2 align='center'>错误<span id='num'>5</span>秒后返回</h2>
+	<?php
+		 }
+	  ?>
+  </body>
+<html>

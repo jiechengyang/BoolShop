@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECSHOP 管理中心 - 添加新商品 </title>
+<meta name="robots" content="noindex, nofollow">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link  href="../view/admin/styles/general.css " rel="stylesheet" type="text/css" />
+<link  href="../view/admin/styles/main.css" rel="stylesheet" type="text/css" />
+<script type='text/javscript'>
+  window.UEDITOR_HOME_URL = '/BoolShop/lib/ueditor/';
+</script>
+<script src='../view/admin/js/jquery.min.js' type="text/javascript"></script>
+<script src='../view/admin/js/common.js' type="text/javascript"></script>
+<script type="text/javascript">
+ window.onload = function(){
+     var form1 = document.forms[0];
+	 for (var i=0; i<form1.length ;i++ )
+	 {
+	     //alert(form1.elements[i].type);
+		 if(form1.elements[i].type == 'text' || form1.elements[i].type=='textarea' &&  form1.elements[i].name != 'goods_desc' ){
+		     form1.elements[i].onfocus = myfocus;
+			 form1.elements[i].onblur = myblur;
+		 }
+	 }
+    form1.onsubmit=function(){
+	   if($1('flag').value == 0){
+	       return false;
+	   }
+	}
+ }
+function charea(a) {
+    var spans = ['general','detail','mix'];
+    for(i=0;i<3;i++) {
+        var o = document.getElementById(spans[i]+'-tab');
+        var tb = document.getElementById(spans[i]+'-table');
+        o.className = o.id==a+'-tab'?'tab-front':'tab-back';
+        tb.style.display = tb.id==a+'-table'?'block':'none';
+    }
+    
+}
+</script>
+<script type="text/javascript">
+  $(document).ready(function(e){
+	$("#form1").submit(function(){
+	 var sn = $('#sn').val();
+	 $.ajax({
+		   type: "POST",
+		   url: "checksn.php",
+		   data: "goods_sn="+sn,
+		   async:false,//(默认是异步，修改成同步)
+		   success: function(msg){
+			//alert( "Data Saved: " + msg );
+			$("#sn_flag").attr('value',msg);
+			}
+	});
+	  
+		if($('#sn_flag').val() == 1){
+				alert('货号存在了');
+				return false;
+			 }
+		
+	  });
+  })
+    
+ 
+</script>
+</head>
+<body>
+
+<h1>
+<span class="action-span"><a href="goodslist.php">商品列表</a></span>
+<span class="action-span1"><a href="index.php?act=main">ECSHOP 管理中心</a> </span><span id="search_id" class="action-span1"> - 添加新商品 </span>
+<div style="clear:both"></div>
+</h1>
+
+<!-- start goods form -->
+<div class="tab-div">
+    <!-- tab bar -->
+    <div id="tabbar-div">
+      <p>
+        <span class="tab-front" id="general-tab" onclick="charea('general');">通用信息</span>
+        <span class="tab-back" id="detail-tab" onclick="charea('detail');">详细描述</span>
+        <span class="tab-back" id="mix-tab" onclick="charea('mix');">其他信息</span>
+
+      </p>
+    </div>
+
+    <!-- tab body -->
+    <div id="tabbody-div">
+      <form enctype="multipart/form-data" action="goodsaddAct.php" method="post" name="theForm"  id="form1">
+        <!-- 最大文件限制 -->
+        <input type="hidden" name="MAX_FILE_SIZE" value="2097152" />
+        <!-- 通用信息 -->
+        <table width="90%" id="general-table" align="center">
+          <tr>
+            <td class="label">商品名称：</td>
+            <td><input type="text" name="goods_name" value="" style="float:left;color:;" size="30" /><span id='gn'></span></td>
+          </tr>
+          <tr>
+            <td class="label">
+            <a href="#" title="点击此处查看提示信息"><img src="../view/admin/images/notice.gif" width="16" height="16" border="0" alt="点击此处查看提示信息"></a> 商品货号： </td>
+            <td><input type="text" name="goods_sn" value="" size="20"  id="sn"/><span id='gs'></span><br />
+            <span class="notice-span" style="display:block"  id="noticeGoodsSN">如果您不输入商品货号，系统将自动生成一个唯一的货号。</span></td>
+          </tr>
+          <tr>
+            <td class="label">商品分类：</td>
+            <td><select name="cat_id" >
+				<option value="0">请选择...</option>
+				<?php foreach($tree as $v){?>
+                        <option value="<?php echo $v['cate_id'];?>"><?php echo str_repeat('&nbsp;&nbsp;',$v['jibie'])?><?php echo $v['catename'];?></option>
+						<?php } ?>
+			</select>
+             </td>
+          </tr>
+            <tr>
+            <td class="label">本店售价：</td>
+            <td><input type="text" name="shop_price" value="0" size="20" /><span id='sp'></span></td>
+          </tr>
+           <tr>
+            <td class="label">市场价：</td>
+            <td><input type="text" name="market_price" value="0" size="20" /></td>
+          </tr>
+          <tr>
+            <td class="label">上传商品图片：</td>
+            <td>
+              <input type="file" name="ori_img" size="35" />
+            </td>
+          </tr>
+        </table>
+
+        <!-- 详细描述 -->
+        <table width="90%" id="detail-table" style="display:none">
+          <tr>
+            <td>
+			<script type='text/plain' id='goods_desc' name='goods_desc'>
+			   
+			</script>
+			<script src='../lib/ueditor/ueditor.config.js' type='text/javascript'></script>
+			<script src='../lib/ueditor/ueditor.all.min.js' type='text/javascript'></script>
+			  <script type='text/javascript'>
+			      var editor = new UE.getEditor('goods_desc',
+				/*{
+					toolbars: [
+								['fullscreen', 'source', 'undo', 'redo', 'bold']
+							   ],
+					initialFrameWidth:750,
+					initialFrameHeight:400 
+
+				});
+				  这是个性化设置的方法   还有修改源文件 但是那样会使所有调用ueditor的都是一样的设置
+				*/
+				{
+					initialFrameWidth:750,
+					initialFrameHeight:400
+				});
+			  </script>
+			</td>
+          </tr>
+        </table>
+
+        <!-- 其他信息 -->
+        <table width="90%" id="mix-table" style="display:none" align="center">
+                    <tr>
+            <td class="label">商品重量：</td>
+            <td><input type="text" name="goods_weight" value="" size="20" /> <select name="weight_unit"><option value="1" selected>千克</option><option value="0.001">克</option></select><span id='gw'></span></td>
+          </tr>
+          <tr>
+            <td class="label"><a href="#" title="点击此处查看提示信息"><img src="../view/admin/images/notice.gif" width="16" height="16" border="0" alt="点击此处查看提示信息"></a> 商品库存数量：</td>
+
+            <td><input type="text" name="goods_number" value="1" size="20" /><span id='gnum'></span></td>
+          </tr>
+                    <tr>
+            <td class="label">加入推荐：</td>
+            <td><input type="checkbox" name="is_best" value="1"  />精品 <input type="checkbox" name="is_new" value="1"  />新品 <input type="checkbox" name="is_hot" value="1"  />热销</td>
+          </tr>
+          <tr id="alone_sale_1">
+            <td class="label" id="alone_sale_2">上架：</td>
+            <td id="alone_sale_3"><input type="checkbox" name="is_on_sale" value="1" checked="checked" /> 打勾表示允许销售，否则不允许销售。</td>
+          </tr>
+          <!--<tr>
+            <td class="label">商品关键词：</td>
+            <td><input type="text" name="keywords" value="" size="40" /> 用空格分隔</td>
+          </tr>
+		   暂时放弃这个字段
+		  -->
+          <tr>
+            <td class="label">商品简单描述：</td>
+            <td><textarea name="goods_brief" cols="40" rows="3"></textarea><span id='gb'></span></td>
+          </tr>
+        </table>
+
+  
+        <div class="button-div">
+          <input type="hidden" name="goods_id" value="0" />
+					<input type='hidden' id='flag' value='1'>
+					<input type='hidden' id='sn_flag' >
+                    <input type="submit" value=" 确定 " class="button" />
+          <input type="reset" value=" 重置 " class="button" />
+        </div>
+        <input type="hidden" name="act" value="insert" />
+      </form>
+    </div>
+</div>
+<!-- end goods form -->
+
+</body>
+</html>

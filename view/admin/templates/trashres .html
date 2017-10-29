@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+	<title>栏目添加结果</title>
+	<script type="text/javascript">
+	    function letgo(){
+		     clearInterval(mytimer);
+			 location.href ="<?php echo $_SERVER['HTTP_REFERER']?>";
+		}
+		setTimeout('letgo()',5000);
+		function jishu(){
+		      num.innerText -= 1;
+		}
+		var mytimer = setInterval('jishu()',1000);
+	</script>
+  </head>
+  <body>
+
+     <?php
+		 if($res){
+	 ?>
+      <h2 align='center'>放入回收站成功，<span id='num'>5</span>秒后返回</h2>
+      <?php
+	     }else{
+	 ?>
+		<h2 align='center'>错误<span id='num'>5</span>秒后返回</h2>
+	<?php
+		 }
+	  ?>
+  </body>
+</html>

@@ -1,0 +1,65 @@
+<?php
+ /*
+   file goodsaddAct.php
+   This is controller function:接收数据   校验数据  调用 GoodsModel.class.php model  以及 view
+
+ */
+ define('KEYS',true);
+ require_once('../include/init.php');
+ /*接收数据
+ echo '<pre>';
+ print_r($_POST);
+ echo '</pre>';
+	Array
+(
+    [MAX_FILE_SIZE] => 2097152
+    [goods_name] => Find7标准版
+    [goods_sn] => N1222
+    [cat_id] => 11
+    [shop_price] => 1500
+    [goods_desc] => dddd
+    [goods_weight] => 1
+    [weight_unit] => 1
+    [goods_number] => 1
+    [is_best] => 1
+    [is_new] => 1
+    [is_hot] => 1
+    [is_on_sale] => 1
+    [goods_brief] => dddd
+    [goods_id] => 0
+    [act] => insert
+)
+	
+ */
+ $goodsmodel = new GoodsModel();
+  $flist = $goodsmodel->auto_get_post($_POST);
+  $data = array();
+  foreach($flist as $v){
+     $data["$v"] = $_POST[$v];
+  }
+  $data['goods_name'] = trim($data['goods_name']);
+  $data['goods_desc'] = trim($data['goods_desc']);
+  $data['goods_brief'] = trim($data['goods_brief']);
+  $data['goods_weight'] *= $_POST['weight_unit'];
+ 
+  if($goodsmodel->check_data($data['goods_name']) == 0){
+       die('变量不存在');
+  }else if($goodsmodel->check_data($data['goods_name']) == 1){
+		die('商品名不能为空');
+  }
+ /* echo '<pre>';
+  print_r($_FILES['goods_img']);
+  echo '<pre>';
+  exit;*/
+  $goods_img = $goodsmodel->upload_file($_FILES['goods_img'],ROOT.'/admin/upload/'.date("Y-m-d"));
+  if($goodsmodel->check_data($goods_img) ==2){
+     $data['goods_img'] = $goods_img;
+  }else{
+      exit;
+  }
+  if($goodsmodel->add($data)){
+     echo '商品添加成功';
+  }else{
+    echo '商品添加失败';
+  }
+?>

@@ -1,0 +1,76 @@
+栏目表  cate
+  create table cate(
+	cate_id int not null primary key auto_increment, //栏目id
+	catename varchar(20) not null default ``,//栏目名称
+	intro varchar(128) not null default ``,//栏目分类描述
+	parent_id int not null default 0//父栏目id
+  )engine myisam charset=utf8;
+  商品表  goods
+  create table if not exists `goods`(
+       `goods_id` int(10) unsigned not null auto_increment, //商品id
+       `goods_sn` char(15) not null default '' ,//商品序列号  独一无二
+       `cat_id`  int(6) not null default '0',//分类(栏目)id
+       `brand_id` smallint(6) not null default '0',//品牌id
+       `goods_name` varchar(30) not null default '',//商品名
+       `shop_price` decimal(9,2) not null default '0.00',//商品价格
+       `market_price` decimal(9,2) not null default '0.00',//市场售价
+       `goods_number` smallint(6) not null default '1',//库存量
+       `click_count` mediumint(9) not null default '0',//点击量
+       `goods_weight` decimal(6,3) not null default '0.000',//商品重量
+       `goods_brief` varchar(100) not null default '',//商品简介
+       `goods_desc` text not null,//商品描述
+       `thumb_img` varchar(30) not null default '',//商品缩影图
+       `goods_img` varchar(30) not null default '',//商品图片
+       `ori_img` varchar(30) not null default '',//商品放大图
+       `is_on_sale` tinyint(4) not null default '1',//是否上架
+       `is_delete` tinyint(4) not null default '0',//是否删除（用于软删除）
+       `is_best` tinyint(4) not null default '0',//是否是精品
+       `is_new` tinyint(4) not null default '0',//是否是新品
+       `is_hot` tinyint(4) not null default '0',//是否是热卖
+       `add_time` int(10) unsigned not null default '0',//商品添加时间（以时间戳的格式保存）
+       `last_update` int(10) unsigned not null default '0',//最后修改时间（以时间戳的格式保存）
+       primary key (`goods_id`),//主键
+       unique key `goods_sn` (`goods_sn`)//唯一索引
+  )engine=myisam default charset=utf8 auto_increment=1;
+  用户表
+  create table user(
+      user_id int unsigned not null primary key auto_increment,
+      username varchar(64) not null default '',
+      passwd char(32) not null default '',
+      email varchar(16) not null default '',
+      loginnum int(6) unsigned not null default 0,
+      regtime int unsigned not null default 0,
+      lastlogin int unsigned not null default 0
+  )engine myisam charset utf8;
+  知识点：经过MD5函数加密后的字符长度是32
+  //订单信息表
+  create table orderinfo(
+     order_id int unsigned not null primary key auto_increment,//主键 订单id
+     order_sn char(15) not null default '',//订单号
+     user_id int unsigned not null default 0,//用户id
+     username varchar(64) not null drfault '',//用户名
+     zone varchar(30) not null default '',//配送区域
+     address varchar(30) not null default '',//详细地址
+     zipcode char(6) not null default '',//邮政编码
+     reciver varchar(15) not null default '',//收货人
+     email varchar(40) not null default '',//电子邮箱
+     tel varchar(20) not null default '',//电话
+     mobile char(11) not null default '',//手机
+     building varchar(30) not null default '',//标志建筑
+     best_time varchar(10) not null default '',//最佳送货时间
+     add_time int  not null default 0,//下订单成功的时间
+     order_amount decimal(10,2) not null default 0.0,//订单的总金额
+     pay tinyint(1) not null default 0//支付方式
+     is_pay tinyint(1) not null default 0//是否已经支付成功 默认为未成功
+  )engine myisam charset utf8;
+  #订单与商品的对应表
+ create table ordergoods(
+     og_id int unsigned not null auto_increment primary key, //主键 自增长
+     order_id int unsigned not null default 0, //订单id  外键  关联 订单表
+     oreder_sn char(15) not null default '', //订单号  外键 关联 订单表
+     goods_id int unsigned not null default 0, //商品id  外键 关联 商品表
+     goods_name varchar(60) not null default '',//商品名
+     goods_number smallint not null default 1,//商品数量
+     shop_price decimal(10,2) not null default 0.0,//商品价
+     subtotal decimal(10,2) not null default 0.0//小计
+ )engine myisam charset utf8;

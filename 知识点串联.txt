@@ -1,0 +1,331 @@
+一、设置错误级别  x
+    第一步  定义一个debug作为判断
+    第二步  怎样判断？如果debug为真就说明是在开发环境，则希望尽可能的多报错；如果为假就说明在生产环境，则希望尽可能的不报错
+二、数据库类   y
+    第一步   分析：因为不知道使用哪种数据库，所以需要定下规范，因此可以使用abstract（抽象类）或者interface（接口）
+    第二步   编码： 使用抽象类写db类   
+		     ①连接数据库 ②发送查询（参数：$sql ;返回值:bool或者resource）③查询多行数据（参数:$sql;返回值:array或者bool）
+		     ④查询单行数据（参数:$sql;返回值:array或者bool）⑤查询单个数据（参数:$sql;返回值:array或者bool）
+		     ⑥自动执行增删改语句（参数：表名、数据、dml语句类型、条件）
+三、配置文件类
+
+
+--------------以上都是用户不能访问的，是被包含的文件，因此放在include文件夹里
+四、自动加载类文件-使用autoload
+         function __autoload(){
+	      if(strtolower(substr($class,-5)) == 'model'){
+		 require_once(ROOT.'/model/'.$class.'.class.php');
+	      }else{
+		require_once(ROOT.'/model/'.$class.'.class.php');
+	      }
+	 }
+五、网站仿穿墙--定义常量作为钥匙
+六、网站栏目制作
+
+需要记住的是：
+              1、当几个类都有相同的方法  属性   为了减少代码的冗余  我们可以构造一个基类(父类)然后去继承它
+	          举例：中学生 小学生  都要教学费  那么我们就可以构造一个父类叫学生类  把学生共有的属性 方法 写在 父类里
+	      2、执行顺序的问题：父类应该放在子类的前面  特别是在引用文件时  应该吧父类的文件放在子类文件前面去引用
+	             应该吧调用函数的代码  写在 引用有个函数的文件的后面  不能写在前面  否则的话就会报未找到该函数方法的错误
+	      3、不是所有的表都得有个model 而且小项目使用mvc还显得挺麻烦   因此 对于model 有 d方法 与 m方法
+	          d方法就是每个子model的业务逻辑方法  m方法就是父model的业务逻辑方法
+		  因此 在我们这个项目里 可以给 Model 加一个修改表名的方法 这样也可以通过model来组织sql
+测试语句：
+   $conf = conf ::getInstance();//实例化对象
+   //echo $conf->host;
+   //log::writelog('测试');
+   /*class mysql{
+        public function execute_sql($sql){
+		     log::writelog($sql);//将sql语句写入日志
+		}
+   }
+   $conn = new mysql();
+   for($i=1;$i<=50000;$i++){
+           $sql = "select goods_name,goods_num,.goods_price,goods_about from goods where goods_id=".mt_rand(1,1000);
+		   $conn->execute_sql($sql);
+   }
+   echo "执行成功";
+    $t1 = $_GET['t1'];
+   $t2 = $_GET['t2'];
+   
+   $mysql = mysql::getIns();
+   $arr = array('t1'=>$t1,'t2'=>$t2);
+   var_dump($mysql->auto_execute_dml('test',$arr,'insert'));
+    $mysql = mysql::getIns();
+  $intro = $_GET['intro'];
+  $data = array('intro'=>$intro);
+  var_dump($mysql->auto_execute_dml('cate',$data,'update',' where id=1 '));  //update语句的测试
+   $t1 = $_GET['t1'];
+  $t2 = $_GET['t2'];
+  $mysql = mysql::getIns();
+  $data = array('t1'=>$t1,'t2'=>$t2);
+  var_dump($mysql->auto_execute_dml('test',$data,'insert'));//在log.class.php加入了clearstaticahe(true,$log)=--清除缓存
+ 
+?>
+   */
+  -----我的首个框架已搭建完成，但是在继续开发的时候需要再次检查测试
+
+  ##########################################################################################################
+  后台开发
+
+    栏目的增删改
+              遗留问题：1、父子关系混乱  --子栏目可以成为父栏目的父亲     
+	                2、当某个栏目存在子栏目的时候就不不能删除该栏目
+  我没注意到的问题:  1、已经引入了  init初始化页面 就可以把其它引入文件例如view的文件引入做成绝对路径  可以使用ROOT
+                     2、对mvc的理解还不深入   一定要记清楚  比如  view里面不存在页面逻辑  只做显示 那么在 修改页面那个锁定下拉框的值的判断就不应该在view里判断
+		     3、controller就是用户能访问到的功能页面
+  商品的添加
+		预先准备： 1、添加的模板  添加的control	goodsadd.php	
+			   2、添加表单的数据处理页面   goodsaddAct.php controller
+			   3、model  GoodsMedel.class.php
+	        流程：1、goodsadd.php 引入 模板  goodsadd.html
+		      2、goodsaddAct.php 页面分析数据
+		      3、goodsaddAct.php 页面调用GoodsModel.claas.php的add方法
+   知识点：软删除：通过在数据表里设置标记位（例如：is_delete） 接着通过修改它的状态值（比如：0表示未删除 1表示删除） 
+		   最后在删除功能上使用update语句修改其状态值为1就表示删除了
+   注意点：
+           1、在表单里：对于 checkbox、radio 如果没有选择的话 则表单提交过来就没有这个  而对于文本域如果没有写 但是会把空提交过来
+			因此要注意判断
+
+ 问题出来了：
+
+	 public function add($data){
+	     return $this->db->auto_execute_dml($this->table,$data);
+	  }
+	  public function select(){
+		    $sql = 'select cate_id,catename,parent_id from '.$this->table;
+			return $this->db->getall($sql);
+	  }
+	 public function delete($cid){
+	       $sql = 'delete from '.$this->table.' where cate_id ='.$cid;
+		   $this->db->sql_query($sql);
+		   return $this->db->affected_rows();
+	  }
+	   public function update($data,$id){
+			$this->db->auto_execute_dml($this->table,$data,'update',' where cate_id = '.$id);
+			return $this->db->affected_rows();
+	  }
+	  以上的增删改查的方法 是每个model都有的 比如  栏目有分类  商品也有分类啊   所以这样我们对我们的model应该做出一些调整了
+	  怎样调整：把这些方法放在基类（父类）里 供子类使用
+ 经验之谈：根据18哥的经验 一般删除和修改都是通过主键
+ 一个路径误区：由于controller引入模板 所以在我们看到的页面的路径都是相对admin下面的 例如：goodslist.php 它的模板在 view/admin/templates/goodslist.html里
+		因为我们运行的是goodslist.php 所以当前的路径就是在admin下  而你 要跳转到商品添加 这些页面的 地址 就直接写相对admin下的地址
+商品回收站：将商品放入回收站、回收站的商品可以彻底删除，也可以恢复
+
+为什么商品不直接删除，而是标记删除或逻辑删除
+1：破坏了数据的完整性
+   例如：淘宝上购买商品，并对商品做了评论，后来商品删除了，这些评论作何处理？
+	张：评论手机  李：买手机  李个人中心：xx年xx日 购买的商品 - 商品的相关信息不见了
+   在比如：对于交易记录会造成缺陷  比如我的一个商品卖出去了   当我将它删除后  有关于它的信息记录就将会消息
+2：影响查询的速度（对于大型网站，尤为严重）
+  数据在硬盘上按格式存储 [][][][][][][][]------当我删除一段记录--------[][][]      [][][][][
+  删除一行，文件产生了 一个 “空洞”，影响索引，影响速度
+  所以 想淘宝这样的网站 虽然每天的数据量都非常大 但是是不会删除的
+ 哲学分析： 首先，根本不存在删这回事，我们之前说  万事离不开 “增删改查”
+            其实 就只有 “改”
+	    李四 出生？ 李四 add ？ no
+	    李四 离开人世？ 李四 delete ？ no
+	    李四 live  true/false ---是判断
+	   
+  在通俗的讲：比如你在某某公司辞职了  但是 是不是你给公司的带来的收益或者 工作记录 就是  delete了  
+	     当然不是了  只是你修改了你的工作单位
+
+偏要删： 例如：用户李四  发布博文 3篇  没偏博文评论10条  应该自下而上 删评论，删博文，删李四（找子孙把）
+		如果直接删除李四：博文与评论无人管理，称为 ”脏数据“
+----------------留给自己的任务：使用mysqli库函数写一个数据库类，接着做批量删除 批量还原的操作--------------------------------
+
+
+
+####自动过滤 自动验证  自动填充#####
+ 自动过滤 
+          对于thinkPHP中： 使用 自动获取表中字段在过滤   和  手动获取表中字段在过滤
+			  两种方法  自动用于开发中  手动用于发布  但是如果字段过多 选择自动
+	  方法1、
+			 //接收表单在post里有的字段
+		    public function auto_get_post($post){
+		      $sql = 'desc '.$this->table;
+			  //return $this->db->getall($sql);
+			  $fields = array();
+			  $desc = $this->db->getall($sql);//sql:desc 表  然后获得所有字段
+			  foreach($desc as $v){//遍历
+			   if(array_key_exists($v['Field'],$post)){//如果$_POST里有表里的字段作为键那么就保存
+			      $fields[] = $v['Field'];
+			   }
+			  }
+			  return $fields;
+		  }
+		  $flist = $goodsmodel->auto_get_post($_POST);
+			  $data = array();
+			  foreach($flist as $v){
+			     $data[$v] = $_POST[$v];
+			  }
+	 方法2、
+			 //自动过滤post数组中不需要的字段
+		  public function facade($arr=array()){
+			  $data = array();
+			  foreach($arr as $k=>$v){//遍历post数组
+			        if(in_array($k,$this->fileds)){//如果post的键存在于字段数组中 那么就保存需要的信息
+					    $data[$k] = $v;
+					}
+			  }
+			  return $data;
+		  }
+		    protected $fileds = array(
+		   'goods_id','goods_sn','cat_id','brand_id','goods_name',
+		   'shop_price','market_price','goods_number','click_count',
+		   'goods_weight','goods_brief','goods_desc','thumb_img',
+		   'goods_img','ori_img','is_on_sale','is_delete','is_best',
+		   'is_new','is_hot','add_time','last_update');
+  自动填充: post数组没有接收到 但是表里又得有的字段 例如  is_best。。。
+	 protected $auto = array(array('is_best','value','0'),
+								array('is_new','value','0'),
+								array('is_hot','value','0'),
+								array('last_update','value','000000'),
+								array('add_time','function','time')
+							   ); //需要填充的字段所组成的特殊数组
+		  public function __autofill($data){//自动过滤后的信息数组
+		       foreach($this->auto as $v){//遍历那些post数组没有的字段所组成的特殊数组
+			       if(!array_key_exists($v[0],$data)){//如果信息数组的键里没有这些字段 那么就填充进去 并自动赋值
+					   switch($v[1]){
+					           case 'value'://如果是value 就赋0
+								$data[$v[0]] = $v[2];
+								break;
+							   case  'function'://如果是function 就回调
+								$data[$v[0]] = call_user_func($v[2]);//或者 $v[2]() --就是变量函数 回调了函数
+								break;
+					   }
+				   }
+			   }
+			   return $data;
+		  }
+
+mysqli类 的测试语句
+ /*
+  $conn = objmysql::get_ins();
+  echo '<pre>';
+  print_r($conn->getall('select * from test'));
+  echo '</pre>';
+  $data = array('t1'=>'ccccc','t2'=>'22222');
+  echo $conn->auto_execute_dml('test',$data)?'ok':'fail';
+   $data = array('t2'=>'ppppppp');
+  echo $conn->auto_execute_dml('test',$data,'update'," where t1= 'ccccc'")?'ok':'fail';
+   $conn->sql_query("delete from test where t1='ccccc'");
+ echo ($conn->affected_rows())?'ok':'fail';
+   $sql = "insert into test values('1','2');";
+  $sql .= "insert into test values('10','20');";
+  $sql .= "insert into test values('100','200')";
+ echo $conn->multi_sql($sql)?'ok':'fail';
+  */
+  注意点： 不能取名为 mysqli  因为 mysqli 是php系统的类名s
+
+  #####图片处理类######
+  第一步  用一个方法 来获取图片的高宽后缀
+  第二步  水印方法：parm string $dst 待操作的图片
+		    Parma string $src 源图片
+		    parm string $save 保存的路径 不填的话就默认替换原图片
+		    parm string $pos 水印的位置
+	  1、保证两个图片存在
+	  2、保证水印不能比待操作图片大
+	  3、读取两个图片
+	  4、根据水印的位置粘贴的坐标
+	  5、加水印
+	  6、保存
+	  7、销毁
+ 第三步   缩略图thumb: Parma string $dst 待处理图片
+                       $save 保存路径
+	     1、判断待处理的图片是否存在
+	     2、计算缩放比例
+	     3、创建原始图的画布
+	     4、创建缩略画布
+	     5、创建白色填充缩略画布
+	     6、填充缩略画布
+	     7、复制并缩略
+	     8、保存图片
+	     9、销毁
+    
+  第四步：验证码
+   验证码的检验：ImageTool::checkCode(100,30,2);
+ #####自动添加商品序列号####
+ public function createSn(){
+    $sn = 'Bl'.date('ymd').mt_rand(10000,999999);
+    $sql = 'select count'.$this->pk."from ".$this->tab." where goods_sn = '$sn'";
+    if($this->db->getone($sql)){
+       return $this->createSn();//递归创建新的货号
+    }else{
+       return $sn;
+    }
+
+ }
+
+#####对于 protected 与 public 的使用
+  一般说来在controller里使用的作为公开  只在本类里用到的 作为 protected
+#####cookie session ########
+1、常量 变量  的作用域本页面  不能跨页面
+ 问题：http是无状态协议，它无法识别用户是否属于本站，也不能跨页面的显示一些信息，那么怎样才能区分用户呢？引出cookie与session
+ 形象点的比喻：一买早点的店铺，早上有很多人来买豆浆，然后李四给老板说来一杯大豆豆浆，
+		老板立马响应了，十分钟后终于到李四取豆浆了，老板突然就忘了李四需要什么，以为他是新来的
+		那么 ，怎样帮助 老板记住客户？
+解决之道：
+           每一位客户来给老板说要什么食物时，老板给每人发一个卡片，然后过段时间结账的话，通过卡片知道客户买的信息从而结账
+	   ----------------这就是cookie 
+	问：
+		用户登录，是谁给谁cookie
+		判断用户是否登录，是谁给谁cookie
+       答：用户登录时，服务器将用户的登录信息保存在cookie数组里（setcookie('user','zhang').....），然后登录后，像浏览器返回cookie信息
+	   在本地浏览器会把cookie信息保存在本地的磁盘里，也就是我们说的cookie文件
+	   检验用户是否登录，当用户访问网站时，首先要检测用户是否登录，此时浏览器将本地的cookie信息发送到网站的服务器，
+	   然后服务器通过$_COOKIE['']是否存在并且在与数据库交互 最后得到判断
+注意点：
+    1、跳转页面的路径是相对于网站目录的路径，而非绝对路径
+    2、面包屑导航条  就是无限级应用之家谱树
+ 欠缺点：
+    1、应该度URL参数进行 urlencode 编码后  再在跳转到的页面就行 urldecode
+
+  session+单例的购物车测试代码
+   //测试session+单例  保证只有一个实例
+  /*echo '<pre>';
+  print_r($cart);
+  echo '</pre>';*/
+  $cart = CartTool::getCart();
+  //添加商品
+  $t = isset($_GET['t'])?$_GET['t']:'';
+  if($t == 'add'){
+     $cart->addItem(1,'篮球',99.9,1);
+	 echo 'Add Baseketball is ok';
+  }else if($t == 'add1'){
+   $cart->addItem(2,'足球',123,2);
+	 echo 'Add football is ok';
+  
+  }else if($t == 'add2'){
+   $cart->addItem(3,'网球',20,1);
+	 echo 'Add tennis  is ok';
+  
+  }else if($t == 'clear'){
+		$cart->clearItem();
+  }else{
+	 echo '<pre>';
+	 print_r($cart->getAll());
+	  echo '</pre>';
+	echo '共有',$cart->getVariety(),'种商品<br/>';
+	echo '共有',$cart->getGnum(),'个商品<br/>';
+    echo '总金额',$cart->getGprice(),'元';
+  }
+
+  ##########订单入库 存在的问题
+   1、每个登录者有自己的购物车，不能混   解决方案  我在退出时做了  session_destroy  把我自己的信息都清除了  也就是每个用户的session信息都在退出的时候清空了
+   2、购买成功后，应该要在购物车里清除购买了的东西
+   3、购买成功后相应的goods表的库存应该减少
+   4、购物不成功应该撤销订单 
+   5、修改订单表的状态
+
+   因此  我自己写的就退出历史的舞台  借鉴  18哥
+   #####支付成功后的操作
+   支付页面  返回回来 应该这数据库吧是否已支付的标识改为1
+
+  ###################smarty 自动加载 与本战点的自动加载的冲突 包括以后引入第三方插件与库文件 和自己站点自动加载方法的冲突
+  分析：一个页面不能同时申明两个一样的函数 如 __autoload
+	smarty的自动加载方法的优先级高于 __autoload 因此再不做处理的情况下是会报错的
+  解决之道：自己写一个自动加载方法 然后使用  spl_autoload_register('自动加载函数名')来注册一个自动加载的方法 这个注册以后的方法的优先级是高于__autoload的
+	    然后自己写的自动加载方法就与smarty的自动加载方法同优先级（因为smarty也是通过spl_autoload_register注册的）然后加载的顺序是从上到下
+	    因此如果把smarty加载的方法卸载自己的加载方法的后面 那么 类会先去找自己的 而自己的加载方法里找不到smarty的类文件 因此也会报出warning错误
+	    ----所以 要先用撒smarty的自动加载方法  再用自己的自动加载方法

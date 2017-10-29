@@ -1,0 +1,402 @@
+模板修改
+<tr align="center" class="0" id="0_1" id = 'tr_3'>
+    <td align="left" class="first-cell" style = 'padding-left="1"'>
+            <img src="../view/admin/images/menu_minus.gif" id="icon_0_1" width="9" height="9" border="0" style="margin-left:1em" />
+
+            <span><a href="#" >GSM手机</a></span>
+        </td>
+    <td width="10%">0</td>
+    <td width="10%"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+    <td width="10%"><img src="../view/admin/images/yes.gif" /></td>
+    <td width="10%"><img src="../view/admin/images/yes.gif" /></td>
+    <td><span>4</span></td>
+
+    <td width="10%" align="right"><span>50</span></td>
+    <td width="24%" align="center">
+      <a href="#">转移商品</a> |
+      <a href="#">编辑</a> |
+      <a href="#" title="移除">移除</a>
+    </td>
+  </tr>
+    <tr align="center" class="0" id="0_1" id = 'tr_4'>
+    <td align="left" class="first-cell" style = 'padding-left="1"'>
+            <img src="../view/admin/images/menu_minus.gif" id="icon_0_1" width="9" height="9" border="0" style="margin-left:1em" />
+
+            <span><a href="#" >3G手机</a></span>
+        </td>
+    <td width="10%">0</td>
+    <td width="10%"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+    <td width="10%"><img src="../view/admin/images/yes.gif" /></td>
+    <td width="10%"><img src="../view/admin/images/yes.gif" /></td>
+    <td><span>0</span></td>
+
+    <td width="10%" align="right"><span>50</span></td>
+    <td width="24%" align="center">
+      <a href="#">转移商品</a> |
+      <a href="#">编辑</a> |
+      <a href="#" title="移除">移除</a>
+    </td>
+  </tr>
+    <tr align="center" class="0" id="0_1" id = 'tr_5'>
+    <td align="left" class="first-cell" style = 'padding-left="1"'>
+            <img src="../view/admin/images/menu_minus.gif" id="icon_0_1" width="9" height="9" border="0" style="margin-left:1em" />
+
+            <span><a href="#" >双模手机</a></span>
+        </td>
+    <td width="10%">0</td>
+    <td width="10%"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+    <td width="10%"><img src="../view/admin/images/no.gif" /></td>
+    <td width="10%"><img src="../view/admin/images/yes.gif" /></td>
+    <td><span>5</span></td>
+
+    <td width="10%" align="right"><span>50</span></td>
+    <td width="24%" align="center">
+      <a href="#">转移商品</a> |
+      <a href="#">编辑</a> |
+      <a href="#" title="移除">移除</a>
+    </td>
+  </tr>
+    <tr align="center" class="0" id="0_1" id = 'tr_6'>
+    <td align="left" class="first-cell" style = 'padding-left="0"'>
+            <img src="../view/admin/images/menu_minus.gif" id="icon_0_1" width="9" height="9" border="0" style="margin-left:0em" />
+
+            <span><a href="#" >手机配件</a></span>
+        </td>
+    <td width="10%">0</td>
+    <td width="10%"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+    <td width="10%"><img src="../view/admin/images/yes.gif" /></td>
+    <td width="10%"><img src="../view/admin/images/yes.gif" /></td>
+    <td><span>0</span></td>
+
+    <td width="10%" align="right"><span>50</span></td>
+    <td width="24%" align="center">
+      <a href="#">转移商品</a> |
+      <a href="#">编辑</a> |
+      <a href="#" title="移除">移除</a>
+    </td>
+  </tr>
+    <tr align="center" class="0" id="0_1" id = 'tr_7'>
+    <td align="left" class="first-cell" style = 'padding-left="1"'>
+            <img src="../view/admin/images/menu_minus.gif" id="icon_0_1" width="9" height="9" border="0" style="margin-left:1em" />
+
+            <span><a href="#" >充电器</a></span>
+        </td>
+    <td width="10%">0</td>
+    <td width="10%"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+    <td width="10%"><img src="../view/admin/images/no.gif" /></td>
+    <td width="10%"><img src="../view/admin/images/yes.gif" /></td>
+    <td><span>0</span></td>
+
+    <td width="10%" align="right"><span>50</span></td>
+    <td width="24%" align="center">
+      <a href="#">转移商品</a> |
+      <a href="#">编辑</a> |
+      <a href="#" title="移除">移除</a>
+    </td>
+  </tr>
+    <tr align="center" class="0" id="0_1" id = 'tr_8'>
+    <td align="left" class="first-cell" style = 'padding-left="1"'>
+            <img src="../view/admin/images/menu_minus.gif" id="icon_0_1" width="9" height="9" border="0" style="margin-left:1em" />
+
+            <span><a href="#" >耳机</a></span>
+        </td>
+    <td width="10%">0</td>
+    <td width="10%"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+    <td width="10%"><img src="../view/admin/images/no.gif" /></td>
+    <td width="10%"><img src="../view/admin/images/yes.gif" /></td>
+    <td><span>0</span></td>
+
+    <td width="10%" align="right"><span>50</span></td>
+    <td width="24%" align="center">
+      <a href="#">转移商品</a> |
+      <a href="#">编辑</a> |
+      <a href="#" title="移除">移除</a>
+    </td>
+  </tr>
+    <tr align="center" class="0" id="0_1" id = 'tr_9'>
+    <td align="left" class="first-cell" style = 'padding-left="1"'>
+            <img src="../view/admin/images/menu_minus.gif" id="icon_0_1" width="9" height="9" border="0" style="margin-left:1em" />
+
+            <span><a href="#" >电池</a></span>
+        </td>
+    <td width="10%">0</td>
+    <td width="10%"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+    <td width="10%"><img src="../view/admin/images/no.gif" /></td>
+    <td width="10%"><img src="../view/admin/images/yes.gif" /></td>
+    <td><span>0</span></td>
+
+    <td width="10%" align="right"><span>50</span></td>
+    <td width="24%" align="center">
+      <a href="#">转移商品</a> |
+      <a href="#">编辑</a> |
+      <a href="#" title="移除">移除</a>
+    </td>
+  </tr>
+    <tr align="center" class="0" id="0_1" id = 'tr_11'>
+    <td align="left" class="first-cell" style = 'padding-left="1"'>
+            <img src="../view/admin/images/menu_minus.gif" id="icon_0_1" width="9" height="9" border="0" style="margin-left:1em" />
+
+            <span><a href="#" >读卡器和内存卡</a></span>
+        </td>
+    <td width="10%">0</td>
+    <td width="10%"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+    <td width="10%"><img src="../view/admin/images/no.gif" /></td>
+    <td width="10%"><img src="../view/admin/images/yes.gif" /></td>
+    <td><span>0</span></td>
+
+    <td width="10%" align="right"><span>50</span></td>
+    <td width="24%" align="center">
+      <a href="#">转移商品</a> |
+      <a href="#">编辑</a> |
+      <a href="#" title="移除">移除</a>
+    </td>
+  </tr>
+    <tr align="center" class="0" id="0_1" id = 'tr_12'>
+    <td align="left" class="first-cell" style = 'padding-left="0"'>
+            <img src="../view/admin/images/menu_minus.gif" id="icon_0_1" width="9" height="9" border="0" style="margin-left:0em" />
+
+            <span><a href="#" >充值卡</a></span>
+        </td>
+    <td width="10%">0</td>
+    <td width="10%"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+    <td width="10%"><img src="../view/admin/images/no.gif" /></td>
+    <td width="10%"><img src="../view/admin/images/yes.gif" /></td>
+    <td><span>0</span></td>
+
+    <td width="10%" align="right"><span>50</span></td>
+    <td width="24%" align="center">
+      <a href="#">转移商品</a> |
+      <a href="#">编辑</a> |
+      <a href="#" title="移除">移除</a>
+    </td>
+  </tr>
+    <tr align="center" class="0" id="0_1" id = 'tr_13'>
+    <td align="left" class="first-cell" style = 'padding-left="1"'>
+            <img src="../view/admin/images/menu_minus.gif" id="icon_0_1" width="9" height="9" border="0" style="margin-left:1em" />
+
+            <span><a href="#" >小灵通/固话充值卡</a></span>
+        </td>
+    <td width="10%">0</td>
+    <td width="10%"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+    <td width="10%"><img src="../view/admin/images/no.gif" /></td>
+    <td width="10%"><img src="../view/admin/images/yes.gif" /></td>
+    <td><span>0</span></td>
+
+    <td width="10%" align="right"><span>50</span></td>
+    <td width="24%" align="center">
+      <a href="#">转移商品</a> |
+      <a href="#">编辑</a> |
+      <a href="#" title="移除">移除</a>
+    </td>
+  </tr>
+    <tr align="center" class="0" id="0_1" id = 'tr_14'>
+    <td align="left" class="first-cell" style = 'padding-left="1"'>
+            <img src="../view/admin/images/menu_minus.gif" id="icon_0_1" width="9" height="9" border="0" style="margin-left:1em" />
+
+            <span><a href="#" >移动手机充值卡</a></span>
+        </td>
+    <td width="10%">0</td>
+    <td width="10%"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+    <td width="10%"><img src="../view/admin/images/no.gif" /></td>
+    <td width="10%"><img src="../view/admin/images/yes.gif" /></td>
+    <td><span>0</span></td>
+
+    <td width="10%" align="right"><span>50</span></td>
+    <td width="24%" align="center">
+      <a href="#">转移商品</a> |
+      <a href="#">编辑</a> |
+      <a href="#" title="移除">移除</a>
+    </td>
+  </tr>
+    <tr align="center" class="0" id="0_1" id = 'tr_15'>
+    <td align="left" class="first-cell" style = 'padding-left="1"'>
+            <img src="../view/admin/images/menu_minus.gif" id="icon_0_1" width="9" height="9" border="0" style="margin-left:1em" />
+
+            <span><a href="#" >联通手机充值卡</a></span>
+        </td>
+    <td width="10%">0</td>
+    <td width="10%"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span></td>
+    <td width="10%"><img src="../view/admin/images/no.gif" /></td>
+    <td width="10%"><img src="../view/admin/images/yes.gif" /></td>
+    <td><span>0</span></td>
+
+    <td width="10%" align="right"><span>50</span></td>
+    <td width="24%" align="center">
+      <a href="#">转移商品</a> |
+      <a href="#">编辑</a> |
+      <a href="#" title="移除">移除</a>
+    </td>
+  </tr>
+  -----------
+  分页
+  if($paging->pagenow == 1){
+					$paging->navigator .= "<b>上页&nbsp;&nbsp;</b>";
+			   }else{
+					$paging->navigator .= "<a href='".{$paging->url}."?pagnow={$paging->pretpage}' title='上一页'>[上一页]</a>";
+			   }
+   //每$page_whole页翻页----通俗点在 1到10页  无论点哪一页 1到10页的连接不变
+			    $start = floor(($paging->pagenow-1)/$paging->page_whole)*$paging->page_whole+1;
+				$index = $start;
+			    //整体每$page_whole页向前翻页如果$pagenow 在 1-$page_whole页内就不会有向前翻的情况
+				  if($paging->pagenow>$paging->page_whole)
+					{
+						 $paging->navigator .= "&nbsp;&nbsp;<a href='{$paging->url}?pagenow=".($start-1)."'>&nbsp;&lt;&lt;&nbsp;</a>";
+					}
+				for($start;$start<$index+$paging->page_whole;$start++){
+						$navigate .= "<a href='{$paging->url}?pagenow={$start}'>[{$start}]</a>";				
+				}
+				//整体每$page_whole页向后翻页
+				$navigate .= "&nbsp;&nbsp;&nbsp;<a href='{$paging->url}?pagenow={$start}'>&nbsp;&lt;&lt;&nbsp;</a>";
+				if($paging->pagenow == $paging->pagecount){
+					$paging->navigator .="&nbsp;<b>下页&nbsp;&nbsp;</b>";
+				}else{
+					$paging->navigator .="&nbsp;<a href=".{$paging->url}."?pagenow={$paging->nextpage}""title='下一页'>[下一页]</a>";
+				}
+			   $paging->navigator .= "</td></tr></table>";
+
+
+
+			     <div class="goodsItem">
+                        	<div class="goodsPic">
+                        	<a class="preview" href="goods.php?id=208"><img alt="平驳圆领角简约1扣女士正装/黑色GC19" src="./view/front/images/208_thumb_G_1301141183961.jpg"></a>
+                            </div>
+                            <div class="goodsInfo">
+                            	<div class="goodsSn"><a class="f_white" title="平驳圆领角简约1扣女士正装/黑色GC19" href="goods.php?id=208">平驳圆领角简约1扣女士...</a></div>
+                            	
+                            	<span class="f_gray">市场价：</span><font class="f_market">￥998元</font><br>
+                                中意价：<font class="f_shop">￥499元                                                              </font>
+                            </div>
+                        </div>
+                                         	<div class="goodsItem">
+                        	<div class="goodsPic">
+                        	<a class="preview" href="goods.php?id=104"><img alt="亮乳白蝴蝶挂扣领袖带褶短袖正装套裙512-3" src="./view/front/images/104_thumb_G_1301129380544.jpg"></a>
+                            </div>
+                            <div class="goodsInfo">
+                            	<div class="goodsSn"><a class="f_white" title="亮乳白蝴蝶挂扣领袖带褶短袖正装套裙512-3" href="goods.php?id=104">亮乳白蝴蝶挂扣领袖带褶...</a></div>
+                            	
+                            	<span class="f_gray">市场价：</span><font class="f_market">￥698元</font><br>
+                                中意价：<font class="f_shop">￥349元                                                              </font>
+                            </div>
+                        </div>
+                                         	<div class="goodsItem">
+                        	<div class="goodsPic">
+                        	<a class="preview" href="goods.php?id=204"><img alt="棉涤泡泡袖修身女士正装衬衫/灰条纹  T002" src="./view/front/images/204_thumb_G_1301023973504.jpg"></a>
+                            </div>
+                            <div class="goodsInfo">
+                            	<div class="goodsSn"><a class="f_white" title="棉涤泡泡袖修身女士正装衬衫/灰条纹  T002" href="goods.php?id=204">棉涤泡泡袖修身女士正装...</a></div>
+                            	
+                            	<span class="f_gray">市场价：</span><font class="f_market">￥258元</font><br>
+                                中意价：<font class="f_shop">￥129元                                                              </font>
+                            </div>
+                        </div>
+                                         	<div class="goodsItem">
+                        	<div class="goodsPic">
+                        	<a class="preview" href="goods.php?id=207"><img alt="枪驳大领腰带装饰后摆褶边时尚1扣女士正装/亮黑色GC20" src="./view/front/images/207_thumb_G_1301142749758.jpg"></a>
+                            </div>
+                            <div class="goodsInfo">
+                            	<div class="goodsSn"><a class="f_white" title="枪驳大领腰带装饰后摆褶边时尚1扣女士正装/亮黑色GC20" href="goods.php?id=207">枪驳大领腰带装饰后摆褶...</a></div>
+                            	
+                            	<span class="f_gray">市场价：</span><font class="f_market">￥1598元</font><br>
+                                中意价：<font class="f_shop">￥799元                                                              </font>
+                            </div>
+                        </div>
+			<div class="goodsItem">
+                        	<div class="goodsPic">
+                            <a class="preview" href="goods.php?id=209"><img alt="枪驳大领面后开叉短款两扣女士正装GC18" src="./view/front/images/209_thumb_G_1301191658576.jpg"></a>
+                            </div>
+                            <div class="goodsInfo">
+                            	<div class="goodsSn"><a class="f_pname" title="枪驳大领面后开叉短款两扣女士正装GC18" href="goods.php?id=209">枪驳大领面后开叉短款两...</a></div>
+                            	<span class="f_gray">市场价：</span><font class="f_market">￥1198元</font><br>
+                            	 中意价：<font class="f_shop">￥599元                                                                  </font>
+                            </div>
+                        </div>                   
+                   		   <div class="goodsItem">
+                        	<div class="goodsPic">
+                            <a class="preview" href="goods.php?id=302"><img alt="双层青果领后腰褶摆一扣女士正装套裤/黑色GC22" src="./view/front/images/302_thumb_G_1346503936019.jpg"></a>
+                            </div>
+                            <div class="goodsInfo">
+                            	<div class="goodsSn"><a class="f_pname" title="双层青果领后腰褶摆一扣女士正装套裤/黑色GC22" href="goods.php?id=302">双层青果领后腰褶摆一扣...</a></div>
+                            	<span class="f_gray">市场价：</span><font class="f_market">￥998元</font><br>
+                            	 中意价：<font class="f_shop">￥499元                                                                  </font>
+                            </div>
+                        </div>                   
+                   		   <div class="goodsItem">
+                        	<div class="goodsPic">
+                            <a class="preview" href="goods.php?id=303"><img alt="泡泡袖后中衩一扣女士正装套裤/黑色GC23" src="./view/front/images/303_thumb_G_1346504995304.jpg"></a>
+                            </div>
+                            <div class="goodsInfo">
+                            	<div class="goodsSn"><a class="f_pname" title="泡泡袖后中衩一扣女士正装套裤/黑色GC23" href="goods.php?id=303">泡泡袖后中衩一扣女士正...</a></div>
+                            	<span class="f_gray">市场价：</span><font class="f_market">￥698元</font><br>
+                            	 中意价：<font class="f_shop">￥349元                                                                  </font>
+                            </div>
+                        </div>                   
+                   		   <div class="goodsItem">
+                        	<div class="goodsPic">
+                            <a class="preview" href="goods.php?id=305"><img alt="枪驳大领面简约2扣女士正装套裙/黑色815" src="./view/front/images/305_thumb_G_1346501380926.jpg"></a>
+                            </div>
+                            <div class="goodsInfo">
+                            	<div class="goodsSn"><a class="f_pname" title="枪驳大领面简约2扣女士正装套裙/黑色815" href="goods.php?id=305">枪驳大领面简约2扣女士...</a></div>
+                            	<span class="f_gray">市场价：</span><font class="f_market">￥998元</font><br>
+                            	 中意价：<font class="f_shop">￥499元                                                                  </font>
+                            </div>
+                        </div>     
+			
+
+			   <div class="goodsItem">
+                        	<div class="goodsPic">
+                            <a class="preview" href="goods.php?id=313"><img alt="纯羊毛一粒扣枪驳领纯黑西服套装" src="./view/front/images/313_thumb_G_1346420329070.jpg"></a>
+                            </div>
+                            <div class="goodsInfo">
+                            	<div class="goodsSn"><a class="f_pname" title="纯羊毛一粒扣枪驳领纯黑西服套装" href="goods.php?id=313">纯羊毛一粒扣枪驳领纯黑...</a></div>
+                            	<span class="f_gray">市场价：</span><font class="f_market">￥3980元</font><br>
+                            	 中意价：<font class="f_shop">￥999元                                </font>
+                            </div>
+                        </div>                   
+                                    	
+                    	
+   
+                       
+     
+                   		   <div class="goodsItem">
+                        	<div class="goodsPic">
+                            <a class="preview" href="goods.php?id=317"><img alt="两扣单开衩枪驳领修身男士西服套装ZYS900/纯深藏青色/羊毛+涤纶" src="./view/front/images/317_thumb_G_1346661429032.jpg"></a>
+                            </div>
+                            <div class="goodsInfo">
+                            	<div class="goodsSn"><a class="f_pname" title="两扣单开衩枪驳领修身男士西服套装ZYS900/纯深藏青色/羊毛+涤纶" href="goods.php?id=317">两扣单开衩枪驳领修身男...</a></div>
+                            	<span class="f_gray">市场价：</span><font class="f_market">￥1398元</font><br>
+                            	 中意价：<font class="f_shop">￥699元                                                                  </font>
+                            </div>
+                        </div>                   
+                                    	
+                    	
+   
+                       
+     
+                   		   <div class="goodsItem">
+                        	<div class="goodsPic">
+                            <a class="preview" href="goods.php?id=318"><img alt="两扣单开衩枪驳领修身男士西服套装ZYS6028/深藏青蓝条纹" src="./view/front/images/318_thumb_G_1346662515966.jpg"></a>
+                            </div>
+                            <div class="goodsInfo">
+                            	<div class="goodsSn"><a class="f_pname" title="两扣单开衩枪驳领修身男士西服套装ZYS6028/深藏青蓝条纹" href="goods.php?id=318">两扣单开衩枪驳领修身男...</a></div>
+                            	<span class="f_gray">市场价：</span><font class="f_market">￥1398元</font><br>
+                            	 中意价：<font class="f_shop">￥699元                                                                  </font>
+                            </div>
+                        </div>                   
+                                    	
+                    	
+   
+                       
+     
+                   		   <div class="goodsItem">
+                        	<div class="goodsPic">
+                            <a class="preview" href="goods.php?id=316"><img alt="两扣单开衩枪驳领斜兜男士西服套装ZW03/黑色条纹/纯羊毛" src="./view/front/images/316_thumb_G_1346660690951.jpg"></a>
+                            </div>
+                            <div class="goodsInfo">
+                            	<div class="goodsSn"><a class="f_pname" title="两扣单开衩枪驳领斜兜男士西服套装ZW03/黑色条纹/纯羊毛" href="goods.php?id=316">两扣单开衩枪驳领斜兜男...</a></div>
+                            	<span class="f_gray">市场价：</span><font class="f_market">￥2598元</font><br>
+                            	 中意价：<font class="f_shop">￥1299元                                                                  </font>
+                            </div>
+                        </div>                   
+                                    	
+                    	
+   
